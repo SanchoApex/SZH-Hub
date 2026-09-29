@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SZH — Sancho's Zesty Hub (Ultra 2026)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ЭКРАН 1: ФЕЙКОВЫЙ 12+ WARNING -->
+    <div id="warning-screen">
+        <div class="warning-modal">
+            <div class="warning-badge">AGE RESTRICTION 12+</div>
+            <h2>ВНИМАНИЕ! AGE WARNING</h2>
+            <p>Данный ресурс содержит контент категории <b>12+ (Zenless Zone Zero Rated)</b>.</p>
+            <p class="sub-warning">Вход разрешен только истинным Прокси и обладателям M3 Remielle Mindset.</p>
+            
+            <div class="warning-buttons">
+                <button id="btn-enter" class="btn-warn enter">МНЕ ЕСТЬ 12 ЛЕТ (ВОЙТИ) 🔓</button>
+                <button id="btn-exit" class="btn-warn exit">МНЕ НЕТ 12 ЛЕТ (ВЫЙТИ) 🚪</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭКРАН 2: ИНТРО ВИДЕО СО ЗВУКОМ -->
+    <div id="boot-screen" style="display: none;">
+        <video id="boot-video" playsinline preload="auto">
+            <source src="media/boot.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- ДВЕ РЕМИ (PNG) ПО БОКАМ ДЛЯ КИНЕМАТОГРАФИЧНОГО ВЫЛЕТА -->
+    <img src="media/remi-left.png" id="remi-left" class="remi-char remi-hidden-left" alt="Remielle Left">
+    <img src="media/remi-right.png" id="remi-right" class="remi-char remi-hidden-right" alt="Remielle Right">
+
+    <!-- ВЕРХНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-link active">SZH HUB</a>
+        <a href="about.html" class="nav-link">ВТОРАЯ ВКЛАДКА</a>
+    </nav>
+
+    <!-- ОСНОВНОЙ КОНТЕЙНЕР (МЕНЮ) -->
+    <div class="app-container hub-hidden" id="main-hub">
+        <header>
+            <div class="logo-badge">SZH 3.3</div>
+            <h1>SANCHO'S ZESTY HUB</h1>
+            <p>M3 Remielle & Noise Bomb Edition • LUB-STUDIO</p>
+        </header>
+
+        <div class="tab-menu">
+            <button class="tab-btn active" data-tab="build">BUILD</button>
+            <button class="tab-btn" data-tab="chess">CHESS</button>
+            <button class="tab-btn" data-tab="a72">A72 LAB</button>
+            <button class="tab-btn" data-tab="gacha">GACHA</button>
+        </div>
+
+        <main class="content">
+            <section id="build" class="tab-content active">
+                <div class="status-box highlight">
+                    <div class="status-title">M3 Remielle • R1 Signal</div>
+                    <p class="subtext">Global Rank: <span class="accent-text">#7549 (Top 18.79%)</span></p>
+                    <p class="subtext">Impactful Substats: <span class="pink-accent">22 + 11</span></p>
+                </div>
+
+                <div class="status-box">
+                    <div class="status-title">Current Stats</div>
+                    <p id="stat-ap">⚡ Anomaly Proficiency: <span class="val">13x</span></p>
+                    <p id="stat-atk">💥 ATK Bonus: <span class="val">11x Base / 9x ATK%</span></p>
+                </div>
+
+                <button class="btn btn-primary" id="btn-boost">КАЛИБРОВАТЬ ДИСКИ МОГГИНГА</button>
+            </section>
+
+            <section id="chess" class="tab-content">
+                <div class="status-box">
+                    <div class="status-title">Операция «Виталя 3:0»</div>
+                    <p class="subtext">Статус: <span class="pink-accent">Полный разгром (M3 Mindset)</span></p>
+                    <p class="subtext">Фигура: Черный Король ♟️</p>
+                </div>
+
+                <button class="btn btn-primary" id="btn-chess">ПОСТАВИТЬ МАТ ВИТАЛЕ</button>
+                <div class="console-log" id="chess-log">&gt; Готов к шахматному моггингу...</div>
+            </section>
+
+            <section id="a72" class="tab-content">
+                <div class="status-box">
+                    <div class="status-title">Samsung A72 • Veteran Edition</div>
+                    <p class="subtext">Причина: Тяжелые эмуляторы и авто-гонки</p>
+                </div>
+
+                <div id="screen-status" class="screen-box error">
+                    ⚠️ ОШИБКА: Главный экран One UI не отвечает!
+                </div>
+
+                <button class="btn btn-alt" id="btn-repair">СЖАТЬ КОРПУС ОКОЛО КАМЕРЫ 🛠️</button>
+            </section>
+
+            <section id="gacha" class="tab-content">
+                <div class="status-box">
+                    <div class="status-title">Симулятор Азарта 3.3</div>
+                    <div class="resource-row">
+                        <p>Полихромы: <b id="poly-count" class="pink-accent">2240</b> 💎</p>
+                        <p>Гарант S-ранга: <b id="pity-count" class="accent-text">80</b></p>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="btn-gacha">ПОКРУТИТЬ 10X (БЕЗПРОИГРЫШНАЯ!)</button>
+                <div class="console-log" id="gacha-log">&gt; Жду нажатия золотой кнопки...</div>
+            </section>
+        </main>
+
+        <footer>
+            LUB-STUDIO • Engine Powered by Sancho • 2026
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
