@@ -5,50 +5,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnEnter = document.getElementById('btn-enter');
     const btnExit = document.getElementById('btn-exit');
 
-    // КЛИК "МНЕ ЕСТЬ 12 ЛЕТ" -> ЗАПУСКАЕМ ИНТРО СО ЗВУКОМ
+    const remiLeft = document.getElementById('remi-left');
+    const remiRight = document.getElementById('remi-right');
+    const mainHub = document.getElementById('main-hub');
+    const topNav = document.querySelector('.top-nav');
+
+    // КЛИК "МНЕ ЕСТЬ 12 ЛЕТ"
     if (btnEnter && warningScreen && bootScreen && bootVideo) {
         btnEnter.addEventListener('click', () => {
-            // 1. Плавно скрываем warning экран
+            // 1. Плавный уход экрана 12+
             warningScreen.classList.add('fade-out');
             
             setTimeout(() => {
                 warningScreen.style.display = 'none';
-                // 2. Показываем видео экран
                 bootScreen.style.display = 'flex';
                 
-                // 3. Включаем звук и играем видео (клик разрешил аудио!)
+                // 2. Включаем интро со звуком
                 bootVideo.muted = false;
-                bootVideo.play().catch(err => {
-                    console.log("Ошибка воспроизведения:", err);
-                });
+                bootVideo.play().catch(err => console.log(err));
+
+                // 3. ТАЙМИНГ ВЫЛЕТА (3.3 секунды)
+                setTimeout(() => {
+                    bootScreen.classList.add('fade-out');
+
+                    // Показываем верхнее меню, Реми и центральный Хаб
+                    if (topNav) topNav.classList.add('nav-visible');
+                    if (remiLeft) remiLeft.classList.add('remi-visible');
+                    if (remiRight) remiRight.classList.add('remi-visible');
+
+                    if (mainHub) {
+                        mainHub.classList.remove('hub-hidden');
+                        mainHub.classList.add('hub-visible');
+                    }
+                }, 3300);
+
+                // Полностью гасим bootScreen
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                }, 5600);
+
             }, 600);
-        });
-
-        // 4. Когда видео закончит проигрываться -> закрываем интро и открываем сайт
-        bootVideo.addEventListener('ended', () => {
-            bootScreen.classList.add('fade-out');
-            setTimeout(() => {
-                bootScreen.style.display = 'none';
-            }, 800);
-        });
-
-        // Запасной случай: если кликнуть по самому видео — его можно пропустить
-        bootScreen.addEventListener('click', () => {
-            bootScreen.classList.add('fade-out');
-            setTimeout(() => {
-                bootScreen.style.display = 'none';
-            }, 800);
         });
     }
 
-    // КЛИК "МНЕ НЕТ 12 ЛЕТ"
     if (btnExit) {
         btnExit.addEventListener('click', () => {
             window.location.href = 'https://www.google.com';
         });
     }
 
-    // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
+    // Переключение вкладок
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -64,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ЛОГИКА КНОПОК ХАБА
+    // Кнопки взаимодействия
     const btnBoost = document.getElementById('btn-boost');
     if (btnBoost) {
         btnBoost.addEventListener('click', () => {
@@ -84,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chessLog = document.getElementById('chess-log');
     if (btnChess && chessLog) {
         btnChess.addEventListener('click', () => {
-            chessLog.innerHTML = '&gt; Виталя поймал мат на 3 ходу! Король повержен. M3 Mindset зафиксирован!';
+            chessLog.innerHTML = '&gt; Виталя поймал мат на 3 ходу! M3 Mindset зафиксирован!';
         });
     }
 
